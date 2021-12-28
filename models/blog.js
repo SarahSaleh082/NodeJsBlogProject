@@ -11,14 +11,16 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 5,
-        maxlength: 10
+        maxlength: 20
 
     },
     author:{
-        type:String
+        type:String,
+        required: true
+
     },
     img:{
-        required:true,
+        // required:true,
         data: Buffer,
         contentType: String
     },

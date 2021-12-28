@@ -1,10 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const blogRequests = require('./routes/blog');
+const userRequests = require('./routes/user');
+const authMiddleWare = require('./middlewares/auth')
+process.env.SECRET = 'sgagdjsadjabsfasbfhsabh';
+
 const app = express();
 
 app.use(express.json())
 
 mongoose.connect("mongodb://localhost:27017/blogProject");
+app.use("/users", userRequests);
+app.use(authMiddleWare);
+app.use("/", blogRequests);
 
 app.use("*", (req, res) => {
     res.status(404).end();

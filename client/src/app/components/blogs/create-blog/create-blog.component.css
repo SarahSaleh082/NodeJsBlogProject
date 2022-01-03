@@ -1,0 +1,10 @@
+
+.create-post input{
+    padding: 10px;
+}
+ .blog-field{
+    border: none;
+    outline: 0;
+    
+    border-bottom: 1px solid #fff;
+}

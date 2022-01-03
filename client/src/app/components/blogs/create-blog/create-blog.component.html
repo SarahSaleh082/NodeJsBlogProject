@@ -1,0 +1,15 @@
+<div class="conatiner" *ngIf="checkUser()">
+    <div class="row d-flex justify-content-center">
+        <div class="create-post m-3 w-50">
+            <form [formGroup]="createForm" (ngSubmit)="onCreate()">
+                <input class="blog-field m-3 w-100 rounded" type="text" placeholder="Enter a Title" formControlName="title">
+                <br>
+                <textarea class="blog-field m-3 w-100 rounded" cols="30" rows="10" placeholder="Enter Content Body" formControlName="body"></textarea>
+                <br>
+                
+                <button type="submit" class="btn btn-primary m-3">Create</button>
+            </form>
+        </div>
+    </div>
+    
+</div>

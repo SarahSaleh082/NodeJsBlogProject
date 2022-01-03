@@ -1,0 +1,20 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.process-success{
+  background-color: rgb(111, 200, 200);
+  /* text-align: center; */
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 3px;
+
+}
+.process-success span{
+  color: rgb(175, 48, 48);
+  padding: 0 5px;
+}

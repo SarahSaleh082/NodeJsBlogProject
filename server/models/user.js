@@ -45,6 +45,12 @@ const userSchema = new mongoose.Schema({
 
             }]
     },
+    likes:{
+        type:
+            [{type: String
+
+            }]
+    },
     bio:{
         type: String,
         minLength: 5,

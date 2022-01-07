@@ -23,4 +23,12 @@ export class UserService {
   getFollowing(id: string){
     return this._apiService.get(`/users/following/${id}`);
   }
+
+  like(blogId: any, userId: any){
+    return this._apiService.patch(`/users/like/${userId}`, {blogId});
+  }
+
+  getLikes(id: string){
+    return this._apiService.get(`/users/likes/${id}`);
+  }
 }

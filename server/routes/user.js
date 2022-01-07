@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {find, create, login, follow, getFollowing} = require('../controllers/user');
+const {find, create, login, follow, getFollowing, like, getLikes} = require('../controllers/user');
 const { update } = require('../models/blog');
 
 router.get("/", async (req, res, next) => {
@@ -23,7 +23,7 @@ router.post("/register", async (req, res, next) => {
     });
 router.post("/login", async (req, res, next) => {
     const {username, password} = req.body;
-    const token = await login({username, password})
+    const token = await login({username, password}, res, next)
         res.json(token);
     });
 router.patch("/follow/:id", async (req, res, next) => {
@@ -33,5 +33,19 @@ router.patch("/follow/:id", async (req, res, next) => {
       .then((doc) => res.json(doc))
       .catch((e) => next(e));
   });
-  
+
+router.patch("/like/:id", async (req, res, next) => {
+  const blogId = req.body.blogId;
+  const id = req.params.id;
+  like(id, blogId)
+      .then((doc) => res.json(doc))
+      .catch((e) => next(e));
+  });
+
+router.get("/likes/:id", async (req, res, next) => {
+  const id  = req.params.id;
+  getLikes(id)
+    .then((doc) => res.json(doc))
+    .catch((e) => next(e));
+  });
 module.exports = router;

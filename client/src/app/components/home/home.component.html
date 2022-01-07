@@ -20,7 +20,9 @@
                       </p>
                       <div class="react d-flex justify-content-between" *ngIf="checkUser()">
                           <div class="icon" *ngIf="!isFollow(blog)" (click)="followAuthor(blog.author._id.toString())"><i class="fas fa-user-plus    "></i></div>
-                          <div class="icon"><i class="fas fa-heart    "></i></div>
+                          <div class="icon"><i class="fas fa-heart    " (click)="giveLike(blog.id)"
+                            [class.is-liked] = "isLike(blog.id)"
+                            ></i></div>
                       </div>
                       <div class="update-delete d-flex justify-content-between">
                         <div class="delete-blog"><button type="button" class="btn btn-danger" *ngIf="hasBlog(blog)" (click)="deleteBlog(blog._id)">Delete</button></div>

@@ -12,7 +12,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 export class RegisterComponent implements OnInit {
   // validClass: boolean = true;
   success: boolean = false;
-
+  msgErr: string = "";
   constructor(private fb: FormBuilder, private _userService: UserService, private _router: Router) { }
   registerForm = this.fb.group({
     firstname: ['', [Validators.required, Validators.minLength(5),Validators.maxLength(10), Validators.pattern('^[A-Za-z]+$')]],
@@ -45,7 +45,10 @@ export class RegisterComponent implements OnInit {
           this._router.navigateByUrl('/login');
         }, 1000)
         
-      }, ()=>{})
+      }, (err)=>{
+        this.msgErr = `@${err.error.keyValue.username}  already register`;
+        console.log(err);
+      })
     }
   }
   

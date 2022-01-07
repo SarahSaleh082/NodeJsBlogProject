@@ -16,6 +16,9 @@
           <li class="nav-item" *ngIf="checkUser()">
             <a class="nav-link active" aria-current="page" routerLink="/following">Following</a>
         </li>
+        <li class="nav-item" *ngIf="checkUser()">
+          <a class="nav-link active" aria-current="page" routerLink="/login">{{"@"+loggedUser}}</a>
+        </li>
           <li class="nav-item" *ngIf="checkUser()">
             <a class="nav-link active" aria-current="page" routerLink="/login" (click)="logout()">LogOut</a>
           </li>

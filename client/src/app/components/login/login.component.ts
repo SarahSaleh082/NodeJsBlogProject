@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 export class LoginComponent implements OnInit {
 
   success: boolean = false;
+  msgErr: string = "";
   constructor(private fb: FormBuilder, private _userService: UserService, private _router: Router) { }
   loginForm = this.fb.group({
     
@@ -34,7 +35,10 @@ export class LoginComponent implements OnInit {
           this._router.navigate(['']);
         }, 1000)
         
-      }, ()=>{})
+      }, (err)=>{
+        this.msgErr = err.error;
+        
+      })
     } else {
       alert('User form is not valid!!');
     }

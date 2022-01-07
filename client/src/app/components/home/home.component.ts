@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
   blogs: Blog [] = [];
   followArr: string [] = [];
+  likeArr: string [] = [];
   constructor(private _blogService: BlogService, private _userService: UserService) { }
 
   ngOnInit(): void {
@@ -20,8 +21,14 @@ export class HomeComponent implements OnInit {
       console.log(this.blogs);
       console.log(res);
     }, (error)=>{});
-  
+    const token:any = localStorage.getItem('token');
+    const logUserId = JSON.parse(atob(token.split('.')[1]))._id.toString();
+    this._userService.getLikes(logUserId).subscribe((res: any)=>{
+      this.likeArr = res.likes;
+    }, (error)=>{});
   }
+
+  
 
   // displayStyle = "none";
   
@@ -75,6 +82,17 @@ export class HomeComponent implements OnInit {
     const blogAuthor = blog.author.username
     const check = this.followArr.some(user=> user == blogAuthor)
     return check;
+  }
+  giveLike(blogId: any){
+    const token:any = localStorage.getItem('token');
+    const logUserId = JSON.parse(atob(token.split('.')[1]))._id.toString();
+    this._userService.like(blogId, logUserId).subscribe((res:any)=>{
+      console.log(res);  //res of patch said modified
+    })
+  }
+
+  isLike(Id: any){
+    return this.likeArr.some(like=> like == Id);
   }
   deleteBlog(id: any){
     this._blogService.deleteBlog(id).subscribe((res:any)=>{

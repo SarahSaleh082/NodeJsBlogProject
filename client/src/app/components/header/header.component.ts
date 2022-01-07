@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  loggedUser: string = '';
   constructor() { }
 
   ngOnInit(): void {
+    const token: any = localStorage.getItem('token');
+    if(token){
+      this.loggedUser = JSON.parse(atob(token.split('.')[1])).username
+
+    }
   }
   checkUser(){
 

@@ -14,7 +14,7 @@ export class CreateBlogComponent implements OnInit {
   createForm: any = this.fb.group({
     title: ['', Validators.required],
     body: ['', Validators.required],
-    image: ['', ]
+    image: ['', Validators.required]
     
   });
   ngOnInit(): void {

@@ -15,3 +15,8 @@
 .edit-blog button{
     color: #fff !important;
 }
+
+.is-liked{
+    color: rgb(224, 62, 62);
+
+}

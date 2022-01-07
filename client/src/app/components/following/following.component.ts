@@ -1,38 +1,37 @@
-import { BlogService } from './../../services/blog.service';
-import { Component, OnInit } from '@angular/core';
 import { Blog } from 'src/app/models/blog';
+import { BlogService } from 'src/app/services/blog.service';
 import { UserService } from 'src/app/services/user.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-following',
+  templateUrl: './following.component.html',
+  styleUrls: ['./following.component.css'],
 })
-export class HomeComponent implements OnInit {
-  blogs: Blog [] = [];
-  followArr: string [] = [];
-  constructor(private _blogService: BlogService, private _userService: UserService) { }
+export class FollowingComponent implements OnInit {
+  followArr: string[] = [];
+  blogArr: Blog[] = [];
+  constructor(
+    private _userService: UserService,
+    private _blogService: BlogService
+  ) {}
 
   ngOnInit(): void {
-    this._blogService.get('/').subscribe((res: any)=>{
-      this.blogs = res;
-
-      console.log(this.blogs);
-      console.log(res);
-    }, (error)=>{});
-  
+    const token: any = localStorage.getItem('token');
+    const userLogId = JSON.parse(atob(token.split('.')[1]))._id.toString();
+    this._userService.getFollowing(userLogId).subscribe((res: any) => {
+      // console.log(res);
+      this.followArr = res.following; //append one user
+      console.log(this.followArr);
+      this.followArr.forEach((user) => {
+        this._blogService.getBlogsByUserId(user).subscribe((res: any) => {
+          this.blogArr.push(...res);  //Append mutli user blogs
+        });
+      });
+    });
   }
-
-  // displayStyle = "none";
-  
-  // openPopup() {
-  //   this.displayStyle = "block";
-  // }
-  // closePopup() {
-  //   this.displayStyle = "none";
-  // }
   getSortData() {
-    return this.blogs.sort((a, b) => {
+    return this.blogArr.sort((a, b) => {
       return <any>new Date(b.createdAt) - <any>new Date(a.createdAt);
     });
   }
@@ -78,10 +77,9 @@ export class HomeComponent implements OnInit {
   }
   deleteBlog(id: any){
     this._blogService.deleteBlog(id).subscribe((res:any)=>{
-      const idx = this.blogs.findIndex((blog)=>blog._id == id);
-      this.blogs.splice(idx, 1);
+      const idx = this.blogArr.findIndex((blog)=>blog._id == id);
+      this.blogArr.splice(idx, 1);
     })
   }
-
 
 }

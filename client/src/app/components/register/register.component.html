@@ -1,87 +1,329 @@
 <section class="vh-100">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-lg-12 col-xl-11">
-          <div class="card text-black" style="border-radius: 25px;">
-            <div class="card-body p-md-5">
-              <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <div
+                  class="process-success text-center rounded"
+                  *ngIf="success"
+                >
+                  Register completed <span><i class="fas fa-heart"></i></span>
+                </div>
 
-                  <div class="process-success text-center rounded" *ngIf="success">Register completed <span><i class="fas fa-heart    "></i></span></div>
-                  
-                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-                  <!-- <div *ngIf="validClass" class="alert alert-danger">Invalid</div> -->
-                  <form class="mx-1 mx-md-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example1c" class="form-control" placeholder="FirstName" formControlName="firstname"/>
-                      </div>
-                    </div>
-                    
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="form3Example1c" class="form-control" placeholder="LastName" formControlName="lastname"/>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                  Register
+                </p>
+                <!-- <div *ngIf="validClass" class="alert alert-danger">Invalid</div> -->
+                <form
+                  class="mx-1 mx-md-4"
+                  [formGroup]="registerForm"
+                  (ngSubmit)="onSubmit()"
+                >
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="text"
+                        id="form3Example1c"
+                        class="form-control"
+                        placeholder="FirstName"
+                        formControlName="firstname"
+                        [class.is-invalid]="
+                          registerForm.controls['firstname'].errors &&
+                          registerForm.touched
+                        "
+                      />
+                      <div *ngIf="registerForm.controls['firstname'].errors">
+                        <div
+                          *ngIf="
+                            registerForm.controls['firstname'].errors[
+                              'required'
+                            ] && registerForm.touched
+                          "
+                        >
+                          required FirstName
                         </div>
-                    </div>
-
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example1c" class="form-control" placeholder="userName" formControlName="username"/>
+                        <div
+                          *ngIf="
+                            registerForm.controls['firstname'].errors[
+                              'minlength'
+                            ]
+                          "
+                        >
+                          min length is 5
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['firstname'].errors[
+                              'maxlength'
+                            ]
+                          "
+                        >
+                          max length is 10
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['firstname'].errors['pattern']
+                          "
+                        >
+                          pattern
+                        </div>
                       </div>
+                    </div>
                   </div>
 
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="email" id="form3Example3c" class="form-control" placeholder="Email" formControlName="mail"/>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="text"
+                        id="form3Example1c"
+                        class="form-control"
+                        placeholder="LastName"
+                        formControlName="lastname"
+                        [class.is-invalid]="
+                          registerForm.controls['lastname'].errors &&
+                          registerForm.touched
+                        "
+                      />
+                      <div *ngIf="registerForm.controls['lastname'].errors">
+                        <div
+                          *ngIf="
+                            registerForm.controls['lastname'].errors[
+                              'required'
+                            ] && registerForm.touched
+                          "
+                        >
+                          required lastname
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['lastname'].errors[
+                              'minlength'
+                            ]
+                          "
+                        >
+                          min length is 5
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['lastname'].errors[
+                              'maxlength'
+                            ]
+                          "
+                        >
+                          max length is 10
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['lastname'].errors['pattern']
+                          "
+                        >
+                          pattern
+                        </div>
                       </div>
                     </div>
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4c" class="form-control" placeholder="Password" formControlName="password"/>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="text"
+                        id="form3Example1c"
+                        class="form-control"
+                        placeholder="userName"
+                        formControlName="username"
+                        [class.is-invalid]="
+                          registerForm.controls['username'].errors &&
+                          registerForm.touched
+                        "
+                      />
+
+                      <div *ngIf="registerForm.controls['username'].errors">
+                        <div
+                          *ngIf="
+                            registerForm.controls['username'].errors[
+                              'required'
+                            ] && registerForm.touched
+                          "
+                        >
+                          required username
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['username'].errors[
+                              'minlength'
+                            ]
+                          "
+                        >
+                          min length is 5
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['username'].errors[
+                              'maxlength'
+                            ]
+                          "
+                        >
+                          max length is 10
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['username'].errors['pattern']
+                          "
+                        >
+                          pattern
+                        </div>
                       </div>
                     </div>
-  
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="email"
+                        id="form3Example3c"
+                        class="form-control"
+                        placeholder="Email"
+                        formControlName="mail"
+                        [class.is-invalid]="
+                          registerForm.controls['mail'].errors &&
+                          registerForm.touched
+                        "
+                      />
+
+                      <div *ngIf="registerForm.controls['mail'].errors">
+                        <div
+                          *ngIf="
+                            registerForm.controls['mail'].errors['required'] &&
+                            registerForm.touched
+                          "
+                        >
+                          required mail
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['mail'].errors['minlength']
+                          "
+                        >
+                          min length is 5
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['mail'].errors['maxlength']
+                          "
+                        >
+                          max length is 10
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['mail'].errors['pattern']
+                          "
+                        >
+                          pattern
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input
+                        type="password"
+                        id="form3Example4c"
+                        class="form-control"
+                        placeholder="Password"
+                        formControlName="password"
+                        [class.is-invalid]="
+                          registerForm.controls['password'].errors &&
+                          registerForm.touched
+                        "
+                      />
+                      <div *ngIf="registerForm.controls['password'].errors">
+                        <div
+                          *ngIf="
+                            registerForm.controls['password'].errors[
+                              'required'
+                            ] && registerForm.touched
+                          "
+                        >
+                          required Password
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['password'].errors[
+                              'minlength'
+                            ]
+                          "
+                        >
+                          min length is 8
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['password'].errors[
+                              'maxlength'
+                            ]
+                          "
+                        >
+                          max length is 20
+                        </div>
+                        <div
+                          *ngIf="
+                            registerForm.controls['password'].errors['pattern']
+                          "
+                        >
+                          pattern
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input type="password" id="form3Example4cd" class="form-control" placeholder="Repeat your password" formControlName="repeatedPassword"/>
                       </div>
                     </div> -->
-  
-                    <div class="form-check d-flex justify-content-center mb-5">
-                      <input
-                        class="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form2Example3c"
-                      />
-                      <label class="form-check-label" for="form2Example3">
-                        I agree all statements in <a href="#!">Terms of service</a>
-                      </label>
-                    </div>
-  
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                    </div>
-  
-                  </form>
-  
-                </div>
-                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-  
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" class="img-fluid" alt="Sample image">
-  
-                </div>
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input
+                      class="form-check-input me-2"
+                      type="checkbox"
+                      value=""
+                      id="form2Example3c"
+                    />
+                    <label class="form-check-label" for="form2Example3">
+                      I agree all statements in
+                      <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div
+                class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+              >
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid"
+                  alt="Sample image"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

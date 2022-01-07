@@ -22,4 +22,6 @@ const login = async({username, password})=>{
       );
 
 }
-module.exports = {find, create, login};
+const follow = (_id, username)=>User.update({_id}, {$push: {following:username}});
+const getFollowing = (_id)=> User.findOne({_id},{following: 1});
+module.exports = {find, create, login, follow, getFollowing};

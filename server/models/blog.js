@@ -20,10 +20,16 @@ const blogSchema = new mongoose.Schema({
         required: true,
 
     },
-    img:{
+    image:{
+        type: String
         // required:true,
-        data: Buffer,
-        contentType: String
+        // data: Buffer,
+        // contentType: String
+    },
+    id:{
+        type: Number,
+        default: 0,
+
     },
     tags: {
         type: [

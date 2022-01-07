@@ -1,0 +1,33 @@
+.post{
+    background-image: url('../../../../assets/img/about.jpg');
+    /* background-position: center; */
+    background-size: cover;
+    height: 75vh;
+    
+}
+
+.post .overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 75vh;
+}
+.img-wrapper{
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    
+}
+img{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.post .blog-date{
+    text-align: right;
+}
+.react .icon{
+    font-size: 1.2rem;
+    
+}

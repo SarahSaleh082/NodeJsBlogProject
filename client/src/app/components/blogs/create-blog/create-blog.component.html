@@ -1,15 +1,45 @@
 <div class="conatiner" *ngIf="checkUser()">
-    <div class="row d-flex justify-content-center">
-        <div class="create-post m-3 w-50">
-            <form [formGroup]="createForm" (ngSubmit)="onCreate()">
-                <input class="blog-field m-3 w-100 rounded" type="text" placeholder="Enter a Title" formControlName="title">
-                <br>
-                <textarea class="blog-field m-3 w-100 rounded" cols="30" rows="10" placeholder="Enter Content Body" formControlName="body"></textarea>
-                <br>
-                
-                <button type="submit" class="btn btn-primary m-3">Create</button>
-            </form>
+  <div class="row d-flex justify-content-center">
+    <div class="create-post m-3 w-50">
+      <form [formGroup]="createForm" (ngSubmit)="onCreate()">
+        <input
+          class="blog-field m-3 w-100 rounded"
+          type="text"
+          placeholder="Enter a Title"
+          formControlName="title"
+        />
+        <br />
+        <div class="m-3 w-100">
+          <button
+           
+            type="button"
+            class="imageBtn"
+            (click)="filePicker.click()"
+          >
+            Pick Image
+          </button>
+          <input type="file" #filePicker (change)="onImagePicked($event)" />
         </div>
+        <div
+          class="image-preview m-3"
+          *ngIf="
+            imagePreview !== '' && imagePreview && createForm.get('image').valid
+          "
+        >
+          <img [src]="imagePreview" [alt]="createForm.value.title" />
+        </div>
+        <br />
+        <textarea
+          class="blog-field m-3 w-100 rounded"
+          cols="30"
+          rows="10"
+          placeholder="Enter Content Body"
+          formControlName="body"
+        ></textarea>
+        <br />
+
+        <button type="submit" class="btn btn-primary m-3">Create</button>
+      </form>
     </div>
-    
+  </div>
 </div>

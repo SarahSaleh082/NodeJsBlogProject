@@ -12,19 +12,27 @@ const userSchema = new mongoose.Schema({
     mail:{
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minLength: 5,
+        maxLength: 20
     },
     password:{
         type: String,
-        required: true
+        required: true,
+        minLength: 8,
+        maxLength: 20
     },
     firstname:{
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxLength: 10
     },
     lastname:{
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxLength: 10
     },
     img:{
         // required:true,

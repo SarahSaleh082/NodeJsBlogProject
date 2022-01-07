@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -10,6 +10,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreateBlogComponent } from './components/blogs/create-blog/create-blog.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { BlogDetailsComponent } from './components/blogs/blog-details/blog-details.component';
+import { FollowingComponent } from './components/following/following.component';
+import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CreateBlogComponent
+    CreateBlogComponent,
+    BlogDetailsComponent,
+    FollowingComponent,
+    EditBlogComponent
     
     
   ],

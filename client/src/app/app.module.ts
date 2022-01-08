@@ -13,6 +13,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { BlogDetailsComponent } from './components/blogs/blog-details/blog-details.component';
 import { FollowingComponent } from './components/following/following.component';
 import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.compon
     CreateBlogComponent,
     BlogDetailsComponent,
     FollowingComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    NotFoundComponent
     
     
   ],

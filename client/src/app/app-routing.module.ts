@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateBlogComponent } from './components/blogs/create-blog/create-blog.component';
 import { BlogDetailsComponent } from './components/blogs/blog-details/blog-details.component';
 import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/home', pathMatch: 'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'following', component: FollowingComponent},
-  {path: 'edit/:id', component: EditBlogComponent}
+  {path: 'edit/:id', component: EditBlogComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

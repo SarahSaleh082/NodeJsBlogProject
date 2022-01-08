@@ -7,9 +7,11 @@ const authMiddleWare = require('./middlewares/auth')
 process.env.SECRET = 'sgagdjsadjabsfasbfhsabh';
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads")); //public image availability
+
 mongoose.connect("mongodb://localhost:27017/blogProject");
 app.use("/users", userRequests);
 app.use(authMiddleWare);

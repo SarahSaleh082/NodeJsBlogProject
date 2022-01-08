@@ -1,11 +1,11 @@
 
 <section class="blogs" id="blogs">
-        
+    <div *ngIf="blogs.length ==0">No Blogs</div>    
     <div class="container">
         
         <div class="row">
             
-
+        
             <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let blog of getSortData()">
                 <div class="card" style="width: 18rem;">
                     <img src="http://localhost:3000/{{blog?.image}}" class="card-img-top" alt="...">

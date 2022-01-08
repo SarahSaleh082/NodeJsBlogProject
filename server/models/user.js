@@ -36,8 +36,7 @@ const userSchema = new mongoose.Schema({
     },
     img:{
         // required:true,
-        data: Buffer,
-        contentType: String
+        type: String
     },
     following:{
         type:
@@ -65,7 +64,6 @@ const userSchema = new mongoose.Schema({
         transform: (doc, ret, opts) =>{
         delete ret.password;
         delete ret.v;
-        console.log(ret);
         return ret;
         }
     }

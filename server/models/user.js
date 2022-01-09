@@ -25,16 +25,16 @@ const userSchema = new mongoose.Schema({
     firstname:{
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 3,
         maxLength: 10
     },
     lastname:{
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 3,
         maxLength: 10
     },
-    img:{
+    image:{
         // required:true,
         type: String
     },

@@ -5,13 +5,13 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 20
+        maxlength: 50
     },
     body:{
         type: String,
         required: true,
         minLength: 5,
-        maxlength: 20
+        maxlength: 300
 
     },
     author:{

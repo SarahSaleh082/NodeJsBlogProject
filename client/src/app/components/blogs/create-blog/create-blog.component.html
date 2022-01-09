@@ -6,8 +6,43 @@
           class="blog-field m-3 w-100 rounded"
           type="text"
           placeholder="Enter a Title"
+          class="form-control"
           formControlName="title"
+          [class.is-invalid]="
+                          createForm.controls['title'].errors &&
+                          createForm.touched
+                        "
         />
+        <div *ngIf="createForm.controls['title'].errors">
+          <div
+            *ngIf="
+              createForm.controls['title'].errors[
+                'required'
+              ] && createForm.touched
+            "
+          >
+            required title
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['title'].errors[
+                'minlength'
+              ]
+            "
+          >
+            min length is 5
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['title'].errors[
+                'maxlength'
+              ]
+            "
+          >
+            max length is 50
+          </div>
+          
+        </div>
         <br />
         <div class="m-3 w-100">
           <button
@@ -33,9 +68,44 @@
           class="blog-field m-3 w-100 rounded"
           cols="30"
           rows="10"
+          class="form-control"
           placeholder="Enter Content Body"
           formControlName="body"
+          [class.is-invalid]="
+            createForm.controls['body'].errors &&
+            createForm.touched
+          "
         ></textarea>
+        <div *ngIf="createForm.controls['body'].errors">
+          <div
+            *ngIf="
+              createForm.controls['body'].errors[
+                'required'
+              ] && createForm.touched
+            "
+          >
+            required body
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['body'].errors[
+                'minlength'
+              ]
+            "
+          >
+            min length is 5
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['body'].errors[
+                'maxlength'
+              ]
+            "
+          >
+            max length is 300
+          </div>
+          
+        </div>
         <br />
 
         <button type="submit" class="btn btn-primary m-3">Create</button>

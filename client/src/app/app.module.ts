@@ -14,6 +14,7 @@ import { BlogDetailsComponent } from './components/blogs/blog-details/blog-detai
 import { FollowingComponent } from './components/following/following.component';
 import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BlogDetailsComponent,
     FollowingComponent,
     EditBlogComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProfileComponent
     
     
   ],

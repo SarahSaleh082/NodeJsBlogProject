@@ -12,8 +12,8 @@ export class CreateBlogComponent implements OnInit {
   imagePreview: string = " ";
   constructor(private fb: FormBuilder, private _blogService:BlogService, private _router:Router) { }
   createForm: any = this.fb.group({
-    title: ['', Validators.required],
-    body: ['', Validators.required],
+    title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    body: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
     image: ['', Validators.required]
     
   });
@@ -63,14 +63,12 @@ export class CreateBlogComponent implements OnInit {
     this.createForm.get('image').updateValueAndValidity();
 
     // to get row data buffer (file of image) and preview it in DOM
-    const reader = new FileReader();
+    const reader = new FileReader(); //read raw data and preview it as image
     reader.onload = () => {
       this.imagePreview = reader.result as string;
       
     };
-    reader.readAsDataURL(file); //callBack function
-    
+    reader.readAsDataURL(file); //callBack function  
+    // console.log(reader);
   }
-
-
 }

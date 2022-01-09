@@ -9,6 +9,10 @@ export class UserService {
 
   constructor(private _apiService: ApiService) { }
 
+  get(username: string){
+    return this._apiService.get(`/users/${username}`)
+  }
+
   register(body: object){
     return this._apiService.post('/users/register', body);
   }
@@ -16,8 +20,8 @@ export class UserService {
   login(body: object){
     return this._apiService.post('/users/login', body);
   }
-  follow(id: string, username: string){
-    return this._apiService.patch(`/users/follow/${id}`, {username});
+  follow(id: string, ID: string){
+    return this._apiService.patch(`/users/follow/${id}`, {ID});
   }
 
   getFollowing(id: string){

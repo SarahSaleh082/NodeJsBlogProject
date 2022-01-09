@@ -8,21 +8,36 @@
 
             <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let blog of getSortData()">
                 <div class="card" style="width: 18rem;">
+                    <div class="author-details p-3 d-flex justify-content-start align-items-center">
+                        <div class="img-wrapper ">
+                            <img class="rounded-circle" src="http://localhost:3000/{{blog.author.image}}" alt="">
+                        </div>
+                        <p class="author px-3">
+                            {{ getFullName(blog) }}
+                            
+                        </p>
+                    </div>
                     <img src="http://localhost:3000/{{blog?.image}}" class="card-img-top" alt="...">
                     <div class="card-body">
+                        <div class="details-blog d-flex justify-content-end">
+                
+                            <p class="blog-date">
+                                {{ blog.createdAt | date: "d/M/yy, h:mm a" }}
+                            </p>
+                  
+                        </div>
                       <h5 class="card-title">{{blog.title}}</h5>
                       <p class="card-text">{{blog.body}}</p>
                       <a routerLink="/blog/{{blog.id}}" class="btn btn-primary">Read More...</a>
-                      <p class="blog-date">{{blog.createdAt | date:"d/M/yy, h:mm a"}}</p>
-                      <p class="author">{{getFullName(blog)}} 
-                          <!-- <span><i class="fas fa-user-plus    "></i></span> -->
-                          <!-- <span></span> -->
-                      </p>
-                      <div class="react d-flex justify-content-between" *ngIf="checkUser()">
-                          <div class="icon" *ngIf="!isFollow(blog)" (click)="followAuthor(blog.author._id.toString())"><i class="fas fa-user-plus    "></i></div>
-                          <div class="icon"><i class="fas fa-heart    "></i></div>
+                      
+                      <div class="react d-flex justify-content-end" *ngIf="checkUser()">
+                        <div class="icon">
+                          <i
+                            class="fas fa-heart"
+                            
+                          ></i>
+                        </div>
                       </div>
-                      <div class="delete-blog"><button type="button" class="btn btn-danger" *ngIf="hasBlog(blog)" (click)="deleteBlog(blog._id)">Delete</button></div>
                       
                     </div>
                 </div>

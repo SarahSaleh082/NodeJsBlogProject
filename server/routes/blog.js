@@ -3,7 +3,7 @@ const router = express.Router();
 const {find, create, updateDocument, deleteDocument, findById, findBlogsByUserId} = require('../controllers/blog');
 const authBlogMiddleWare = require('../middlewares/blogMiddleWare');
 const Blog = require('../models/blog');
-const upload = require('../middlewares/multerImg')
+const upload = require('../middlewares/multerImg');
 router.get("/", async(req, res) => {
     find({})
       .then((doc) => res.json(doc))
@@ -24,7 +24,7 @@ router.get("/follow/:id", async(req, res) => {
   });
 router.post("/create", upload.single("image"),  async(req, res, next) => {
     const blog = req.body;
-    blog.image = req.file.path;
+    blog.image = req.file.path; //attach the file data to req
     blog.author = req.user._id;
 
     // blog.author = "61d300e2ee5a7332d59389ef";

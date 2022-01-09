@@ -3,7 +3,17 @@
     color: #fff;
     margin: 5% 0;
 }
+.author{
+    cursor: pointer;
 
+}
+.author span{
+    padding: 0 5px;
+}
+.author span:hover{
+    color: #0dcaf0;
+    cursor: pointer;
+}
 .react .icon{
     font-size: 1.2rem;
     cursor: pointer;
@@ -20,3 +30,4 @@
     color: rgb(224, 62, 62);
 
 }
+

@@ -8,6 +8,7 @@ import { CreateBlogComponent } from './components/blogs/create-blog/create-blog.
 import { BlogDetailsComponent } from './components/blogs/blog-details/blog-details.component';
 import { EditBlogComponent } from './components/blogs/edit-blog/edit-blog.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/home', pathMatch: 'full'},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'following', component: FollowingComponent},
   {path: 'edit/:id', component: EditBlogComponent},
+  {path: 'profile/:username', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

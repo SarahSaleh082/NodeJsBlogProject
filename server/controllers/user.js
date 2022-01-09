@@ -29,7 +29,7 @@ const login = async({username, password}, res, next)=>{
       );
 
 }
-const follow = (_id, username)=>User.updateOne({_id}, {$push: {following:username}});
+const follow = (_id, ID)=>User.updateOne({_id}, {$push: {following:ID}});
 const getFollowing = (_id)=> User.findOne({_id},{following: 1});
 
 const like = (_id, blogId)=>User.updateOne({_id}, {$push: {likes: blogId}});

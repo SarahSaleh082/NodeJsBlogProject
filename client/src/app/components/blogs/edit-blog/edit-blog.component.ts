@@ -13,7 +13,7 @@ export class EditBlogComponent implements OnInit {
   receviedImg: string = '';
   ID: string = '';
   blogId: number = 0;
-  constructor(private fb: FormBuilder, private _blogService:BlogService, private _router:Router, private _ativatedRoute:ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private _blogService:BlogService, private _router:Router, private _activatedRoute:ActivatedRoute) { }
   editForm: any = this.fb.group({
     title: ['', Validators.required],
     body: ['', Validators.required],
@@ -21,7 +21,7 @@ export class EditBlogComponent implements OnInit {
     
   });
   ngOnInit(): void {
-    this._ativatedRoute.paramMap.subscribe(params=>{
+    this._activatedRoute.paramMap.subscribe(params=>{
 
       
       this._blogService.getById(`/${params.get('id')}`).subscribe(

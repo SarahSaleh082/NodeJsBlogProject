@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
   }
   deleteBlog(id: any){
     this._blogService.deleteBlog(id).subscribe((res:any)=>{
-      const idx = this.blogs.findIndex((blog)=>blog._id == id);
+      const idx = this.blogs.findIndex((item)=>item._id == id);
       this.blogs.splice(idx, 1);
     })
   }

@@ -24,7 +24,7 @@ export class FollowingComponent implements OnInit {
       this.followArr = res.following; //append one user
       console.log(this.followArr);
       this.followArr.forEach((user) => {
-        this._blogService.getBlogsByUserId(user).subscribe((res: any) => {
+        this._blogService.getBlogsByUserId(`follow/${user}`).subscribe((res: any) => {
           this.blogArr.push(...res);  //Append mutli user blogs
         });
       });

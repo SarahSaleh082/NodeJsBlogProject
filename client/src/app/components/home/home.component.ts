@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   blogs: Blog [] = [];
   followArr: string [] = [];
   likeArr: string [] = [];
+  tags: any [] = [];
   constructor(private _blogService: BlogService, private _userService: UserService) { }
 
   ngOnInit(): void {
@@ -26,6 +27,27 @@ export class HomeComponent implements OnInit {
     this._userService.getLikes(logUserId).subscribe((res: any)=>{
       this.likeArr = res.likes;
     }, (error)=>{});
+
+    //Get Following
+
+    this._userService.getFollowing(logUserId).subscribe((res: any) => {
+      // console.log(res);
+      this.followArr = res.following; //append one user
+      console.log(this.followArr);
+      
+      });
+
+    //Get Tags
+
+    this._blogService.get('/get/tags').subscribe((res: any)=>{
+      res.forEach((item: any)=> this.tags.push(item.tags)); //[{[]}]=>[[]]
+      // console.log(this.tags);
+      let newArr = this.tags.reduce((a, b) => [...a, ...b], []);
+      this.tags = [...new Set(newArr)];
+      console.log(this.tags);
+    });
+    
+    
   }
 
   
@@ -79,7 +101,7 @@ export class HomeComponent implements OnInit {
   }
 
   isFollow(blog:Blog):boolean{ 
-    const blogAuthor = blog.author.username
+    const blogAuthor = blog.author._id.toString();
     const check = this.followArr.some(user=> user == blogAuthor)
     return check;
   }
@@ -112,6 +134,12 @@ export class HomeComponent implements OnInit {
 
   getPagination(limit: any, skip: any){
     this._blogService.get(`/?limit=${limit}&skip=${skip}`).subscribe((res: any)=>{
+      this.blogs = res;
+    })
+  }
+
+  getByTag(tag: any){
+    this._blogService.get(`/getTags/${tag}`).subscribe((res: any)=>{
       this.blogs = res;
     })
   }

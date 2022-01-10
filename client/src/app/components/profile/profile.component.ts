@@ -1,6 +1,7 @@
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: any = "";
-  constructor(private _userService: UserService, private _activatedRoute:ActivatedRoute) { }
+  blogs: any [] = [];
+  constructor(private _userService: UserService, private _blogService: BlogService, private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params=>{
@@ -18,9 +20,20 @@ export class ProfileComponent implements OnInit {
       this._userService.get(`/${params.get('username')}`).subscribe((res: any)=>{
         this.user = res[0];
         console.log(this.user);
+        this._blogService.getBlogsByUserId(`profileBlog/${this.user._id}`).subscribe((res: any)=>{
+          this.blogs = res;
+          console.log(this.blogs);
+        })
       })
+      
     });
     
+  }
+
+  getSortData() {
+    return this.blogs.sort((a, b) => {
+      return <any>new Date(b.createdAt) - <any>new Date(a.createdAt);
+    });
   }
 
 }

@@ -10,4 +10,6 @@ const findBlogsByTitle = async(title)=> {
     const regex = new RegExp(title)
     return Blog.find(
     {title: {$regex: regex}}).populate('author')};
-module.exports = {find, create, deleteDocument, updateDocument, findById, findBlogsByUserId, findBlogsByTitle};
+const findTags = ()=> Blog.find({}, {tags: 1, _id: 0});
+const findByTagName = (tagName)=> Blog.find({tags: tagName}).populate('author');
+module.exports = {find, create, deleteDocument, updateDocument, findById, findBlogsByUserId, findBlogsByTitle, findTags, findByTagName};

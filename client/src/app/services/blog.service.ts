@@ -20,7 +20,7 @@ export class BlogService {
     return this._apiService.delete(`/${id}`);
   }
   getBlogsByUserId(id: any){
-    return this._apiService.get(`/follow/${id}`);
+    return this._apiService.get(`/${id}`);
   }
   update(id: any,body: object){
     return this._apiService.patch(`/${id}`, body)

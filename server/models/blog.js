@@ -35,7 +35,8 @@ const blogSchema = new mongoose.Schema({
         type: [
           {
             type: String,
-            maxlength: 10,
+            minLength: 5,
+            maxlength: 20,
           },
         ],
     }

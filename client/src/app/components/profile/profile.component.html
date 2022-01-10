@@ -31,4 +31,19 @@
       
     </div>
   </div>
+  
 </div>
+<div class="container">
+  <div class="row justify-content-lg-between">
+    <h3>Current Blogs</h3>
+    <div class="card my-3" *ngFor="let blog of getSortData()">
+      <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <p class="card-text summary">{{blog.body}}</p>
+        <a routerLink="/blog/{{ blog.id }}" class="btn btn-primary">Go to Blog</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+

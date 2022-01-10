@@ -64,6 +64,48 @@
           <img [src]="imagePreview" [alt]="createForm.value.title" />
         </div>
         <br />
+        <input
+          class="blog-field m-3 w-100 rounded"
+          type="text"
+          placeholder="Enter Tags"
+          class="form-control"
+          formControlName="tags"
+          [class.is-invalid]="
+                          createForm.controls['tags'].errors &&
+                          createForm.touched
+                        "
+        />
+        <div *ngIf="createForm.controls['tags'].errors">
+          <div
+            *ngIf="
+              createForm.controls['tags'].errors[
+                'required'
+              ] && createForm.touched
+            "
+          >
+            required tags
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['tags'].errors[
+                'minlength'
+              ]
+            "
+          >
+            min length is 5
+          </div>
+          <div
+            *ngIf="
+              createForm.controls['tags'].errors[
+                'maxlength'
+              ]
+            "
+          >
+            max length is 20
+          </div>
+          
+        </div>
+        <br>
         <textarea
           class="blog-field m-3 w-100 rounded"
           cols="30"

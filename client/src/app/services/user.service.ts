@@ -20,8 +20,8 @@ export class UserService {
   login(body: object){
     return this._apiService.post('/users/login', body);
   }
-  follow(id: string, ID: string){
-    return this._apiService.patch(`/users/follow/${id}`, {ID});
+  follow(userId: string, blogAuthorId: string){
+    return this._apiService.patch(`/users/follow/${userId}`, {ID: blogAuthorId});
   }
 
   getFollowing(id: string){

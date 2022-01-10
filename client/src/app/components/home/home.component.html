@@ -1,26 +1,45 @@
 <section class="blogs" id="blogs">
   <div class="dispaly-1" *ngIf="blogs.length == 0">No Blogs</div>
   <div class="container">
+    <div class="input-group rounded my-3">
+      <input type="search" class="form-control rounded" #inputSearch placeholder="Search" aria-label="Search"
+      aria-describedby="search-addon" />
+      <span class="input-group-text border-0" id="search-addon"  (click)="search(inputSearch.value)">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
     <div class="row">
+      
       <div
         class="col-lg-4 col-md-6 col-sm-12"
         *ngFor="let blog of getSortData()"
       >
-        <div class="card" style="width: 18rem">
-            <div class="author-details p-3 d-flex justify-content-start align-items-center">
-                <div class="img-wrapper" routerLink="/profile/{{blog.author.username}}">
-                    <img class="rounded-circle" src="http://localhost:3000/{{ blog.author?.image }}" alt="">
-                </div>
-                <p class="author px-3">
-                    {{ getFullName(blog) }}
-                    <span
-                      class="icon"
-                      *ngIf="!isFollow(blog)"
-                      (click)="followAuthor(blog.author._id.toString())"
-                      ><i class="fas fa-user-plus"></i
-                    ></span>
-                </p>
+        <div class="card">
+          <div
+            class="author-details p-3 d-flex justify-content-start align-items-center"
+          >
+            <div
+              class="img-wrapper"
+              routerLink="/profile/{{ blog.author.username }}"
+            >
+              <img
+                class="rounded-circle"
+                src="http://localhost:3000/{{ blog.author?.image }}"
+                alt=""
+              />
             </div>
+            <p class="author px-3">
+              {{ getFullName(blog) }}
+              <span
+                class="icon"
+                *ngIf="!isFollow(blog)"
+                (click)="followAuthor(blog.author._id.toString())"
+                ><i class="fas fa-user-plus"></i
+              ></span>
+            </p>
+          </div>
+          
+
           <img
             src="http://localhost:3000/{{ blog?.image }}"
             class="card-img-top"
@@ -28,11 +47,9 @@
           />
           <div class="card-body">
             <div class="details-blog d-flex justify-content-end">
-                
-                <p class="blog-date">
-                    {{ blog.createdAt | date: "d/M/yy, h:mm a" }}
-                </p>
-      
+              <p class="blog-date">
+                {{ blog.createdAt | date: "d/M/yy, h:mm a" }}
+              </p>
             </div>
             <!-- <p class="author">
                 {{ getFullName(blog) }}
@@ -84,18 +101,21 @@
         </div>
       </div>
       <!-- Start Pagination -->
-      
-      <nav class="d-flex justify-content-center" aria-label="Page navigation example">
-        <ul class="pagination">
+
+      <nav
+        class="d-flex justify-content-center"
+        aria-label="Page navigation example"
+      >
+        <ul class="pagination my-3">
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" (click)="getPagination(6, 0)">1</a></li> <!-- Get Request limit 6 skip 0 -->
+          <li class="page-item"><a class="page-link" (click)="getPagination(6, 6)">2</a></li> <!-- Get Request limit 6 skip 6 -->
+          <li class="page-item"><a class="page-link" (click)="getPagination(6, 12)">3</a></li> <!-- Get Request limit 6 skip 12 -->
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>

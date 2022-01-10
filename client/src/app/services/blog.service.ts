@@ -25,4 +25,9 @@ export class BlogService {
   update(id: any,body: object){
     return this._apiService.patch(`/${id}`, body)
   }
+
+  getByTitle(url: string){
+    return this._apiService.get(url);
+  }
+  
 }

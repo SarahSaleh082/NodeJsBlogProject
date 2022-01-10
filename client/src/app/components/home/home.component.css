@@ -2,7 +2,16 @@
     background-color: #0e1217!important;
     color: #fff;
     margin: 5% 0;
+    /* width: 354px; */
 }
+
+/* .card .card-img-top{
+    
+    width: 354px;
+    height: 236px;
+    object-fit: cover;
+
+} */
 .author{
     cursor: pointer;
 
@@ -31,3 +40,19 @@
 
 }
 
+.input-group{
+    width: 30%;
+    margin: 0 auto;
+}
+.input-group input{
+    background-color: #0e1217;
+    border: none;
+    color: #ffff;
+}
+.input-group  span{
+    cursor: pointer;
+}
+
+nav .pagination{
+    cursor: pointer;
+}

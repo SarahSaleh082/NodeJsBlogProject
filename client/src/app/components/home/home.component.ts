@@ -101,5 +101,19 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  search(title: any){
+    // console.log(title);
+    this._blogService.getByTitle(`/search/title?title=${title}`).subscribe((res: any)=>{
+      // console.log(res);
+      this.blogs = res;
+      return this.blogs.filter(item=> item.title== title)
+    });
+  }
+
+  getPagination(limit: any, skip: any){
+    this._blogService.get(`/?limit=${limit}&skip=${skip}`).subscribe((res: any)=>{
+      this.blogs = res;
+    })
+  }
 
 }

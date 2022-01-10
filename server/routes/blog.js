@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {find, create, updateDocument, deleteDocument, findById, findBlogsByUserId} = require('../controllers/blog');
+const {find, create, updateDocument, deleteDocument, findById, findBlogsByUserId, findBlogsByTitle} = require('../controllers/blog');
 const authBlogMiddleWare = require('../middlewares/blogMiddleWare');
 const Blog = require('../models/blog');
 const upload = require('../middlewares/multerImg');
 router.get("/", async(req, res) => {
-    find({})
+    const {limit, skip} = req.query;
+    // console.log(limit, skip);
+    find({}, +limit, +skip)
       .then((doc) => res.json(doc))
       .catch((e) => next(e));
     });
@@ -16,6 +18,14 @@ router.get("/:id", async(req, res) => {
     .then((doc) => res.json(doc))
     .catch((e) => next(e));
   });
+
+router.get("/search/title", async(req, res, next) => {
+  const title = req.query.title;
+  // console.log(title);
+  findBlogsByTitle(title)
+    .then((doc) => res.json(doc))
+    .catch((e) => next(e));
+  });  
 router.get("/follow/:id", async(req, res) => {
   
   findBlogsByUserId(req.params.id)

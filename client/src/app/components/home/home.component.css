@@ -12,6 +12,9 @@
     object-fit: cover;
 
 } */
+.tags{
+    cursor: pointer;
+}
 .author{
     cursor: pointer;
 

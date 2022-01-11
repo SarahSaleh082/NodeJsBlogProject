@@ -16,12 +16,14 @@ export class HomeComponent implements OnInit {
   constructor(private _blogService: BlogService, private _userService: UserService) { }
 
   ngOnInit(): void {
+    //Get Blogs
     this._blogService.get('/').subscribe((res: any)=>{
       this.blogs = res;
 
       console.log(this.blogs);
       console.log(res);
     }, (error)=>{});
+
     const token:any = localStorage.getItem('token');
     const logUserId = JSON.parse(atob(token.split('.')[1]))._id.toString();
     this._userService.getLikes(logUserId).subscribe((res: any)=>{
@@ -88,6 +90,9 @@ export class HomeComponent implements OnInit {
     return false
 
   }
+
+  //Give action of Following
+
   followAuthor(_id: string){
     const token:any = localStorage.getItem('token');
     const logUserId = JSON.parse(atob(token.split('.')[1]))._id.toString();
@@ -99,7 +104,7 @@ export class HomeComponent implements OnInit {
 
 
   }
-
+  //make follow before or not
   isFollow(blog:Blog):boolean{ 
     const blogAuthor = blog.author._id.toString();
     const check = this.followArr.some(user=> user == blogAuthor)

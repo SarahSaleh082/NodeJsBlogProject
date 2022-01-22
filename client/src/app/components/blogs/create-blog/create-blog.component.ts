@@ -46,7 +46,9 @@ export class CreateBlogComponent implements OnInit {
       this._blogService.create(postData).subscribe((res: any)=>{
         
         console.log(res);
-        this._router.navigate([`/blog/${res.id}`]);
+        // this._router.navigate([`/blog/${res.id}`]);
+        this._router.navigate(['']);
+
 
 
         
